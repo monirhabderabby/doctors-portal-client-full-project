@@ -4,8 +4,8 @@ import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { format } from "date-fns";
 
-const AppoinmentBanner = () => {
-    const [date, setDate] = useState(new Date());
+const AppoinmentBanner = ({date, setDate}) => {
+    
     return (
         <div>
             <div class="hero h-[70vh]">
