@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     useSignInWithEmailAndPassword,
     useSignInWithGoogle,
@@ -30,10 +30,11 @@ const Login = () => {
     if (error || GError) {
         signInError = <p>{error?.message || GError?.message}</p>;
     }
-
-    if (GUser || user) {
+    if (user || GUser) {
+        console.log(user || GUser);
         navigate(from, { replace: true });
     }
+
     const handleGoogleLogin = async () => {
         await signInWithGoogle();
     };

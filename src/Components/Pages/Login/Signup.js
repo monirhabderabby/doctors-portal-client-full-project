@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Loading from "../../Shared/Loading";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import auth from "../../../firebase.init";
 import {
     useCreateUserWithEmailAndPassword,
@@ -22,8 +22,10 @@ const Signup = () => {
         handleSubmit,
     } = useForm();
 
-    const navigate = useNavigate();
     let signInError;
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/appoinment";
 
     if (loading || GLoading || updating) {
         return <Loading></Loading>;
@@ -35,7 +37,7 @@ const Signup = () => {
     }
 
     if (GUser || user) {
-        navigate("/appoinment");
+        navigate(from, { replace: true });
     }
     const handleGoogleLogin = async () => {
         await signInWithGoogle();
