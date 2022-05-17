@@ -5,7 +5,7 @@ import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading";
 import { toast } from "react-toastify";
 
-const Modal = ({ treatment, date, setTreatment }) => {
+const Modal = ({ treatment, date, setTreatment, refetch }) => {
     const { _id, name, slots } = treatment;
     const [user, loading] = useAuthState(auth);
     if (loading) {
@@ -34,11 +34,11 @@ const Modal = ({ treatment, date, setTreatment }) => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 if (data.success) {
                     toast.success(
                         `Your appoinment is set at, ${formattedDate} on ${slot}`
                     );
+                    refetch();
                     //to close modal
                     setTreatment(null);
                 } else {
