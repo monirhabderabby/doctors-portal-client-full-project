@@ -15,7 +15,7 @@ const AvailableAppoints = ({ date }) => {
         isLoading,
         refetch,
     } = useQuery(["available", formattedDate], () =>
-        fetch(`http://localhost:5000/available?date=${formattedDate}`).then(
+        fetch(`https://desolate-castle-78820.herokuapp.com/available?date=${formattedDate}`).then(
             (res) => res.json()
         )
     );
@@ -25,7 +25,7 @@ const AvailableAppoints = ({ date }) => {
     }
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/available?date=${formattedDate}`)
+    //     fetch(`https://desolate-castle-78820.herokuapp.com/available?date=${formattedDate}`)
     //         .then((res) => res.json())
     //         .then((data) => setServices(data));
     // }, [formattedDate]);
