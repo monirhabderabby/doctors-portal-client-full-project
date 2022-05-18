@@ -8,6 +8,7 @@ import {
     useSignInWithGoogle,
     useUpdateProfile,
 } from "react-firebase-hooks/auth";
+import useToken from "../../../Hooks/useToken";
 
 const Signup = () => {
     const [signInWithGoogle, GUser, GLoading, GError] =
@@ -21,6 +22,8 @@ const Signup = () => {
         formState: { errors },
         handleSubmit,
     } = useForm();
+
+    const [token] = useToken(user || GUser);
 
     let signInError;
     let navigate = useNavigate();
@@ -36,7 +39,7 @@ const Signup = () => {
         );
     }
 
-    if (GUser || user) {
+    if (token) {
         navigate(from, { replace: true });
     }
     const handleGoogleLogin = async () => {

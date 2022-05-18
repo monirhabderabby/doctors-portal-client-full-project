@@ -7,6 +7,7 @@ import auth from "../../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from "../../Shared/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useToken from "../../../Hooks/useToken";
 
 const Login = () => {
     const [signInWithGoogle, GUser, GLoading, GError] =
@@ -18,6 +19,7 @@ const Login = () => {
         formState: { errors },
         handleSubmit,
     } = useForm();
+    const [token] = useToken(user || GUser);
     let signInError;
 
     let navigate = useNavigate();
@@ -30,8 +32,7 @@ const Login = () => {
     if (error || GError) {
         signInError = <p>{error?.message || GError?.message}</p>;
     }
-    if (user || GUser) {
-        console.log(user || GUser);
+    if (token) {
         navigate(from, { replace: true });
     }
 
