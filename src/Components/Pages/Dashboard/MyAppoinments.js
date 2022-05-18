@@ -21,12 +21,12 @@ const MyAppoinments = () => {
                 },
             })
                 .then((res) => {
-                    if(res.status === 401){
+                    if(res.status === 401 || res.status===403){
+                        toast.error("You have no access for this application")
+                        localStorage.removeItem("accessToken")
                         signOut(auth);
                         navigate('/')
-                    }
-                    else if (res.status === 403){
-                        toast.error("You have no access permmision")
+                        
                     }
                     else{
                         return res.json();
@@ -36,7 +36,6 @@ const MyAppoinments = () => {
                 })
                 .then((data) => {
                     
-                    console.log(data);
                     setTreatment(data);
                 });
         }
