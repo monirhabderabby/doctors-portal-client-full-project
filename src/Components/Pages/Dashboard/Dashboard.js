@@ -1,26 +1,11 @@
-import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Dashboard = () => {
-    const [admin, setAdmin] = useState(false);
-
     const [user] = useAuthState(auth);
-    useEffect(() => {
-        fetch(`http://localhost:5000/user/checkAdmin/${user.email}`, {
-            method: 'GET',
-            headers: {
-                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-        .then(res=> res.json())
-        .then(data=> {
-            if(data.role === 'admin'){
-                setAdmin(!false)
-            }
-        })
-    }, [user])
+    const [admin] = useAdmin(user)
     return (
         <div class="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />

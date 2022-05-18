@@ -15,6 +15,7 @@ import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import MyAppoinments from "./Components/Pages/Dashboard/MyAppoinments";
 import MyReviews from "./Components/Pages/Dashboard/MyReviews";
 import AllUsers from "./Components/Pages/Dashboard/AllUsers";
+import RequireAdmin from "./Components/Pages/Dashboard/RequireAdmin";
 
 function App() {
     return (
@@ -49,7 +50,11 @@ function App() {
                         path="reviews"
                         element={<MyReviews></MyReviews>}
                     ></Route>
-                    <Route path="users" element={<AllUsers></AllUsers>}></Route>
+                    <Route path="users" element={
+                        <RequireAdmin>
+                            <AllUsers></AllUsers>
+                        </RequireAdmin>
+                    }></Route>
                 </Route>
             </Routes>
             <ToastContainer />
