@@ -13,7 +13,7 @@ const AddDoctor = () => {
     } = useForm();
 
     const { data: service, isLoading } = useQuery("servicename", () =>
-        fetch("http://localhost:5000/services").then((res) => res.json())
+        fetch("https://desolate-castle-78820.herokuapp.com/services").then((res) => res.json())
     );
 
     const imgStorageKey = "0181b42a74a0dc0638d21ac92219f0c6";
