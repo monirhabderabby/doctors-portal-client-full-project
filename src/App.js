@@ -16,6 +16,7 @@ import MyAppoinments from "./Components/Pages/Dashboard/MyAppoinments";
 import MyReviews from "./Components/Pages/Dashboard/MyReviews";
 import AllUsers from "./Components/Pages/Dashboard/AllUsers";
 import AddDoctor from "./Components/Pages/Dashboard/AddDoctor";
+import RequireAdmin from "./Components/Pages/Dashboard/RequireAdmin";
 
 function App() {
     return (
@@ -55,10 +56,18 @@ function App() {
                         path="reviews"
                         element={<MyReviews></MyReviews>}
                     ></Route>
-                    <Route path="users" element={<AllUsers></AllUsers>}></Route>
+                    <Route path="users" element={
+                        <RequireAdmin>
+                            <AllUsers></AllUsers>
+                        </RequireAdmin>
+                    }></Route>
                     <Route
                         path="addDoctor"
-                        element={<AddDoctor></AddDoctor>}
+                        element={
+                            <RequireAdmin>
+                                <AddDoctor></AddDoctor>
+                            </RequireAdmin>
+                        }
                     ></Route>
                 </Route>
             </Routes>
