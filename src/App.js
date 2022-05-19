@@ -15,6 +15,7 @@ import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import MyAppoinments from "./Components/Pages/Dashboard/MyAppoinments";
 import MyReviews from "./Components/Pages/Dashboard/MyReviews";
 import AllUsers from "./Components/Pages/Dashboard/AllUsers";
+import AddDoctor from "./Components/Pages/Dashboard/AddDoctor";
 
 function App() {
     return (
@@ -38,9 +39,14 @@ function App() {
                 ></Route>
                 <Route path="/login" element={<Login></Login>}></Route>
                 <Route path="/signup" element={<Signup></Signup>}></Route>
-                <Route path="dashboard" element={<RequireAuth>
-                    <Dashboard></Dashboard>
-                </RequireAuth>}>
+                <Route
+                    path="dashboard"
+                    element={
+                        <RequireAuth>
+                            <Dashboard></Dashboard>
+                        </RequireAuth>
+                    }
+                >
                     <Route
                         index
                         element={<MyAppoinments></MyAppoinments>}
@@ -49,9 +55,11 @@ function App() {
                         path="reviews"
                         element={<MyReviews></MyReviews>}
                     ></Route>
-                    <Route path="users" element={
-                            <AllUsers></AllUsers>
-                    }></Route>
+                    <Route path="users" element={<AllUsers></AllUsers>}></Route>
+                    <Route
+                        path="addDoctor"
+                        element={<AddDoctor></AddDoctor>}
+                    ></Route>
                 </Route>
             </Routes>
             <ToastContainer />
