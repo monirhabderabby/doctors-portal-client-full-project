@@ -17,6 +17,7 @@ import MyReviews from "./Components/Pages/Dashboard/MyReviews";
 import AllUsers from "./Components/Pages/Dashboard/AllUsers";
 import AddDoctor from "./Components/Pages/Dashboard/AddDoctor";
 import RequireAdmin from "./Components/Pages/Dashboard/RequireAdmin";
+import ManageDoctor from "./Components/Pages/Dashboard/ManageDoctor";
 
 function App() {
     return (
@@ -69,6 +70,11 @@ function App() {
                             </RequireAdmin>
                         }
                     ></Route>
+                    <Route path="managedoctor" element={
+                        <RequireAdmin>
+                            <ManageDoctor></ManageDoctor>
+                        </RequireAdmin>
+                    }></Route>
                 </Route>
             </Routes>
             <ToastContainer />
