@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../Shared/Loading';
+import DeleteDoctorModal from './DeleteDoctorModal';
 
 const ManageDoctor = () => {
-    const {data: doctor, isLoading} = useQuery("doctor", ()=> fetch('https://desolate-castle-78820.herokuapp.com/doctor', {
+  const [deletingDoctor, setDeletingDoctor] = useState(null);
+    const {data: doctor, isLoading, refetch} = useQuery("doctor", ()=> fetch('https://desolate-castle-78820.herokuapp.com/doctor', {
         method: 'GET',
         headers: {
             authorization : `Bearer ${localStorage.getItem("accessToken")}`
         }
     }).then(res=> res.json()))
+
 
     if(isLoading){
         return <Loading></Loading>
@@ -40,12 +43,19 @@ const ManageDoctor = () => {
                 </td>
                 <td>{d.name}</td>
                 <td>{d.speciality}</td>
-                <td>{<button class="btn btn-xs">Remove</button>}</td>
+                <td>{
+                  
+                <label for="delete-doctor-confirmation" onClick={()=>setDeletingDoctor(d)} class="btn btn-xs btn-error">Delete</label>
+                
+                }</td>
               </tr>)
         }
       
     </tbody>
   </table>
+  {
+    deletingDoctor && <DeleteDoctorModal doctor={deletingDoctor} refetch={refetch} setDeletingDoctor={setDeletingDoctor}></DeleteDoctorModal>
+  }
 </div>
         </div>
     );
