@@ -52,18 +52,22 @@ const Navbar = () => {
                             <li>
                                 <Link to="/contactus">Contact</Link>
                             </li>
-                            <li>
-                                {user && <Link to="/dashboard">Dashboard</Link>}
-                            </li>
-                            <li>
-                                {user ? (
+                            {user && (
+                                <li>
+                                    <Link to="/dashboard">Dashboard</Link>
+                                </li>
+                            )}
+                            {user ? (
+                                <li>
                                     <Link to="" onClick={handleSignOut}>
                                         Signout
                                     </Link>
-                                ) : (
+                                </li>
+                            ) : (
+                                <li>
                                     <Link to="/login">Login</Link>
-                                )}
-                            </li>
+                                </li>
+                            )}
                         </ul>
                     </div>
                     <a
@@ -112,18 +116,22 @@ const Navbar = () => {
                         <li>
                             <Link to="/contactus">Contact Us</Link>
                         </li>
-                        <li>
-                            {user && <Link to="/dashboard">Dashboard</Link>}
-                        </li>
-                        <li>
-                            {user ? (
+                        {user && (
+                            <li>
+                                <Link to="/dashboard">Dashboard</Link>
+                            </li>
+                        )}
+                        {user ? (
+                            <li>
                                 <Link to="" onClick={handleSignOut}>
                                     Signout
                                 </Link>
-                            ) : (
+                            </li>
+                        ) : (
+                            <li>
                                 <Link to="/login">Login</Link>
-                            )}
-                        </li>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>

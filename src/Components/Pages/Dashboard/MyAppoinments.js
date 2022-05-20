@@ -50,6 +50,7 @@ const MyAppoinments = () => {
                             <th>Name</th>
                             <th>Treatment</th>
                             <th>Time</th>
+                            <th>Payment Status</th>
                         </tr>
                     </thead>
                     <tbody className="text-center">
@@ -59,6 +60,7 @@ const MyAppoinments = () => {
                                 <td>{t.patientName}</td>
                                 <td>{t.treatment}</td>
                                 <td>{t.date}</td>
+                                <td><button className="btn btn-xs btn-secondary">Pay Now</button></td>
                             </tr>
                         ))}
                     </tbody>

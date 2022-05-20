@@ -6,7 +6,7 @@ import Loading from "../../Shared/Loading";
 import { toast } from "react-toastify";
 
 const Modal = ({ treatment, date, setTreatment, refetch }) => {
-    const { _id, name, slots } = treatment;
+    const { _id, name, slots, Price } = treatment;
     const [user, loading] = useAuthState(auth);
     if (loading) {
         return <Loading></Loading>;
@@ -20,6 +20,7 @@ const Modal = ({ treatment, date, setTreatment, refetch }) => {
             treatment: name,
             date: formattedDate,
             slot,
+            Price,
             patient: user.email,
             patientName: user.displayName,
             phone: e.target.phone.value,
