@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 
@@ -50,7 +50,7 @@ const MyAppoinments = () => {
                             <th>Name</th>
                             <th>Treatment</th>
                             <th>Time</th>
-                            <th>Payment Status</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody className="text-center">
@@ -60,7 +60,7 @@ const MyAppoinments = () => {
                                 <td>{t.patientName}</td>
                                 <td>{t.treatment}</td>
                                 <td>{t.date}</td>
-                                <td><button className="btn btn-xs btn-secondary">Pay Now</button></td>
+                                <td>{t.Price && <Link to={`/dashboard/payment/${t._id}`}><button className="btn btn-xs btn-secondary">Pay Now</button></Link>}</td>
                             </tr>
                         ))}
                     </tbody>
